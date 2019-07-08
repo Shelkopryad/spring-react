@@ -1,0 +1,36 @@
+buildscript {
+    ext {
+        KOTLIN_VERSION = "1.3.20"
+        JAVA_VERSION = "1.8"
+    }
+    repositories {
+        maven { url "http://mvn/artifactory/public" }
+        maven { url "http://mvn/artifactory/gradleplugins" }
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${KOTLIN_VERSION}"
+    }
+}
+
+apply plugin: "java"
+apply plugin: "kotlin"
+apply plugin: "groovy"
+apply plugin: "maven"
+apply plugin: "maven-publish"
+apply plugin: "idea"
+apply from: "kotlin.gradle"
+
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib"
+    compile(group: 'io.rest-assured',           name: 'rest-assured',                   version: '3.2.0')
+    compile(group: 'org.apache.tika', 			name: 'tika-parsers', 				    version: '1.20')
+    compile(group: 'com.ibm.icu',               name: 'icu4j',                          version: '57.1')
+    compile(group: 'org.projectlombok',         name: 'lombok',                         version: '1.18.4')
+    compile(group: 'org.springframework.boot',  name: 'spring-boot-starter-webflux',    version: '2.1.5.RELEASE')
+    compile(group: 'org.springframework',       name: 'spring-webmvc',                  version: '5.1.5.RELEASE')
+}
+
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
